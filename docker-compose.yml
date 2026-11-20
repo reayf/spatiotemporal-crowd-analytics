@@ -1,0 +1,38 @@
+# Development topology: three services sharing the JSON file buffer volume.
+# The ./data bind mount is the "message broker" — all cross-service
+# communication flows through it.
+services:
+  gateway:
+    build: ./gateway-go
+    ports:
+      - "8080:8080"
+    environment:
+      DATA_DIR: /data
+      WORKER_COUNT: "4"
+      WATCH_INTERVAL_SECONDS: "2"
+    volumes:
+      - ./data:/data
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/healthz"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  cv-engine:
+    build: ./cv-engine
+    environment:
+      DATA_DIR: /data
+      YOLO_MODEL: yolov8n.pt
+      DEVICE: cpu
+      SAMPLE_RATE: "2"
+    volumes:
+      - ./data:/data
+
+  mining-engine:
+    build: ./mining-engine
+    environment:
+      DATA_DIR: /data
+      MINER: kmeans           # or "deepstpp"
+      FORECAST_HORIZON_SECONDS: "60.0"
+    volumes:
+      - ./data:/data

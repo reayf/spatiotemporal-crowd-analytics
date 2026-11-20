@@ -1,0 +1,5 @@
+# Data Mining engine — Python 3.10+
+torch>=2.2.0              # DeepSTPP intensity network
+scikit-learn>=1.4.0       # K-Means hotspot clustering
+pandas>=2.2.0             # trajectory log -> tidy time-series frames
+numpy>=1.26.0

@@ -1,0 +1,4 @@
+# Computer Vision engine — Python 3.10+
+ultralytics>=8.2.0        # YOLOv8 detection + native ByteTrack MOT
+opencv-python>=4.9.0      # video decoding / frame iteration
+numpy>=1.26.0

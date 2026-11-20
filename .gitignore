@@ -1,0 +1,37 @@
+# --- Go ---
+gateway-go/bin/
+gateway-go/gateway
+gateway-go/gateway.exe
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# --- ML artifacts ---
+*.pt
+*.onnx
+runs/
+
+# --- Runtime data (keep directory structure, ignore payloads) ---
+data/**/*.mp4
+data/**/*.avi
+data/**/*.mkv
+data/**/*.json
+!data/**/.gitkeep
+
+# --- OS / IDE / Secrets ---
+.env
+.env.*
+!.env.example
+.claude/
+.agent/
+.agents/
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
